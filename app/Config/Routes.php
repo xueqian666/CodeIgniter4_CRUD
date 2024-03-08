@@ -7,8 +7,8 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Home::index');
 
-$routes->get('student', 'Student::index');
-$routes->post('student/store', 'Student::store');
-$routes->get('student/edit/(:num)', 'Student::edit/$1');
-$routes->get('student/delete/(:num)', 'Student::delete/$1');
-$routes->post('student/update', 'Student::update');
+$routes->get('user', 'user::index');
+$routes->post('user/store', 'user::store');
+$routes->get('user/edit/(:num)', 'user::edit/$1');
+$routes->get('user/delete/(:num)', 'user::delete/$1');
+$routes->post('user/update', 'user::update');

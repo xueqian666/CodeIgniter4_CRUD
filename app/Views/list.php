@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Students Management</title>
+    <title>Users Management</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
@@ -17,11 +17,11 @@
     <div class="container"><br /><br />
         <div class="row">
             <div class="col-lg-10">
-                <h2>Students Management</h2>
+                <h2>Users Management</h2>
             </div>
             <div class="col-lg-2">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">
-                    Add New Student
+                    Add New user
                 </button>
             </div>
         </div>
@@ -29,30 +29,30 @@
         <hr />
         <br />
 
-        <table class="table table-bordered table-striped" id="studentTable">
+        <table class="table table-bordered table-striped" id="userTable">
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Address</th>
+                    <th>Name</th>
+                    <th>User Name</th>
+                    <th>Password</th>
                     <th width="280px">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
-                foreach ($students_detail as $row) {
+                foreach ($users_detail as $row) {
                 ?>
-                <tr id="<?php echo $row['id']; ?>">
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['first_name']; ?></td>
-                    <td><?php echo $row['last_name']; ?></td>
-                    <td><?php echo $row['address']; ?></td>
-                    <td>
-                        <a data-id="<?php echo $row['id']; ?>" class="btn btn-primary btnEdit">Edit</a>
-                        <a data-id="<?php echo $row['id']; ?>" class="btn btn-danger btnDelete">Delete</a>
-                    </td>
-                </tr>
+                    <tr id="<?php echo $row['id']; ?>">
+                        <td><?php echo $row['id']; ?></td>
+                        <td><?php echo $row['name']; ?></td>
+                        <td><?php echo $row['username']; ?></td>
+                        <td><?php echo $row['password']; ?></td>
+                        <td>
+                            <a data-id="<?php echo $row['id']; ?>" class="btn btn-primary btnEdit">Edit</a>
+                            <a data-id="<?php echo $row['id']; ?>" class="btn btn-danger btnDelete">Delete</a>
+                        </td>
+                    </tr>
                 <?php
                 }
                 ?>
@@ -62,26 +62,22 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">Add New Student</h5>
+                        <h5 class="modal-title" id="ModalLabel">Add New user</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="addStudent" name="addStudent" action="<?php echo site_url('student/store'); ?>"
-                        method="post">
+                    <form id="adduser" name="adduser" action="<?php echo site_url('user/store'); ?>" method="post">
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="txtFirstName">First Name:</label>
-                                <input type="text" class="form-control" id="txtFirstName" placeholder="Enter First Name"
-                                    name="txtFirstName">
+                                <label for="txtName">Name:</label>
+                                <input type="text" class="form-control" id="txtName" placeholder="Enter name" name="txtName">
                             </div>
                             <div class="form-group">
-                                <label for="txtLastName">Last Name:</label>
-                                <input type="text" class="form-control" id="txtLastName" placeholder="Enter Last Name"
-                                    name="txtLastName">
+                                <label for="txtuserName">User Name:</label>
+                                <input type="text" class="form-control" id="txtuserName" placeholder="Enter User Name" name="txtuserName">
                             </div>
                             <div class="form-group">
-                                <label for="txtAddress">Address:</label>
-                                <textarea class="form-control" id="txtAddress" name="txtAddress" rows="10"
-                                    placeholder="Enter Address"></textarea>
+                                <label for="txtPassword">Password:</label>
+                                <textarea class="form-control" id="txtPassword" name="txtPassword" rows="10" placeholder="Enter Password"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -97,27 +93,23 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="ModalLabel">Update Student</h5>
+                        <h5 class="modal-title" id="ModalLabel">Update user</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form id="updateStudent" name="updateStudent" action="<?php echo site_url('student/update'); ?>"
-                        method="post">
+                    <form id="updateuser" name="updateuser" action="<?php echo site_url('user/update'); ?>" method="post">
                         <div class="modal-body">
-                            <input type="hidden" name="hdnStudentId" id="hdnStudentId" />
+                            <input type="hidden" name="hdnuserId" id="hdnuserId" />
                             <div class="form-group">
-                                <label for="txtFirstName">First Name:</label>
-                                <input type="text" class="form-control" id="txtFirstName" placeholder="Enter First Name"
-                                    name="txtFirstName">
+                                <label for="txtName">Name:</label>
+                                <input type="text" class="form-control" id="txtName" placeholder="Enter name" name="txtName">
                             </div>
                             <div class="form-group">
-                                <label for="txtLastName">Last Name:</label>
-                                <input type="text" class="form-control" id="txtLastName" placeholder="Enter Last Name"
-                                    name="txtLastName">
+                                <label for="txtuserName">User Name:</label>
+                                <input type="text" class="form-control" id="txtuserName" placeholder="Enter User Name" name="txtuserName">
                             </div>
                             <div class="form-group">
-                                <label for="txtAddress">Address:</label>
-                                <textarea class="form-control" id="txtAddress" name="txtAddress" rows="10"
-                                    placeholder="Enter Address"></textarea>
+                                <label for="txtPassword">Password:</label>
+                                <textarea class="form-control" id="txtPassword" name="txtPassword" rows="10" placeholder="Enter Password"></textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -132,100 +124,100 @@
     </div>
 
     <script>
-    $(document).ready(function() {
-        $('#studentTable').DataTable();
+        $(document).ready(function() {
+            $('#userTable').DataTable();
 
-        $("#addStudent").validate({
-            rules: {
-                txtFirstName: "required",
-                txtLastName: "required",
-                txtAddress: "required"
-            },
-            messages: {},
+            $("#adduser").validate({
+                rules: {
+                    txtName: "required",
+                    txtuserName: "required",
+                    txtPassword: "required"
+                },
+                messages: {},
 
-            submitHandler: function(form) {
-                var form_action = $("#addStudent").attr("action");
+                submitHandler: function(form) {
+                    var form_action = $("#adduser").attr("action");
+                    $.ajax({
+                        data: $('#adduser').serialize(),
+                        url: form_action,
+                        type: "POST",
+                        dataType: 'json',
+                        success: function(res) {
+                            var user = '<tr id="' + res.data.id + '">';
+                            user += '<td>' + res.data.id + '</td>';
+                            user += '<td>' + res.data.name + '</td>';
+                            user += '<td>' + res.data.username + '</td>';
+                            user += '<td>' + res.data.password + '</td>';
+                            user += '<td><a data-id="' + res.data.id +
+                                '" class="btn btn-primary btnEdit">Edit</a>  <a data-id="' +
+                                res.data.id +
+                                '" class="btn btn-danger btnDelete">Delete</a></td>';
+                            user += '</tr>';
+                            $('#userTable tbody').prepend(user);
+                            $('#adduser')[0].reset();
+                            $('#addModal').modal('hide');
+                        },
+                        error: function(data) {}
+                    });
+                }
+            });
+
+            $('body').on('click', '.btnEdit', function() {
+                var user_id = $(this).attr('data-id');
                 $.ajax({
-                    data: $('#addStudent').serialize(),
-                    url: form_action,
-                    type: "POST",
+                    url: 'user/edit/' + user_id,
+                    type: "GET",
                     dataType: 'json',
                     success: function(res) {
-                        var student = '<tr id="' + res.data.id + '">';
-                        student += '<td>' + res.data.id + '</td>';
-                        student += '<td>' + res.data.first_name + '</td>';
-                        student += '<td>' + res.data.last_name + '</td>';
-                        student += '<td>' + res.data.address + '</td>';
-                        student += '<td><a data-id="' + res.data.id +
-                            '" class="btn btn-primary btnEdit">Edit</a>  <a data-id="' +
-                            res.data.id +
-                            '" class="btn btn-danger btnDelete">Delete</a></td>';
-                        student += '</tr>';
-                        $('#studentTable tbody').prepend(student);
-                        $('#addStudent')[0].reset();
-                        $('#addModal').modal('hide');
+                        $('#updateModal').modal('show');
+                        $('#updateuser #hdnuserId').val(res.data.id);
+                        $('#updateuser #txtName').val(res.data.name);
+                        $('#updateuser #txtuserName').val(res.data.username);
+                        $('#updateuser #txtPassword').val(res.data.password);
                     },
                     error: function(data) {}
                 });
-            }
-        });
+            });
 
-        $('body').on('click', '.btnEdit', function() {
-            var student_id = $(this).attr('data-id');
-            $.ajax({
-                url: 'student/edit/' + student_id,
-                type: "GET",
-                dataType: 'json',
-                success: function(res) {
-                    $('#updateModal').modal('show');
-                    $('#updateStudent #hdnStudentId').val(res.data.id);
-                    $('#updateStudent #txtFirstName').val(res.data.first_name);
-                    $('#updateStudent #txtLastName').val(res.data.last_name);
-                    $('#updateStudent #txtAddress').val(res.data.address);
+            $("#updateuser").validate({
+                rules: {
+                    txtName: "required",
+                    txtuserName: "required",
+                    txtPassword: "required"
                 },
-                error: function(data) {}
+                messages: {},
+                submitHandler: function(form) {
+                    var form_action = $("#updateuser").attr("action");
+                    $.ajax({
+                        data: $('#updateuser').serialize(),
+                        url: form_action,
+                        type: "POST",
+                        dataType: 'json',
+                        success: function(res) {
+                            var user = '<td>' + res.data.id + '</td>';
+                            user += '<td>' + res.data.name + '</td>';
+                            user += '<td>' + res.data.username + '</td>';
+                            user += '<td>' + res.data.password + '</td>';
+                            user += '<td><a data-id="' + res.data.id +
+                                '" class="btn btn-primary btnEdit">Edit</a>  <a data-id="' +
+                                res.data.id +
+                                '" class="btn btn-danger btnDelete">Delete</a></td>';
+                            $('#userTable tbody #' + res.data.id).html(user);
+                            $('#updateuser')[0].reset();
+                            $('#updateModal').modal('hide');
+                        },
+                        error: function(data) {}
+                    });
+                }
+            });
+
+            $('body').on('click', '.btnDelete', function() {
+                var user_id = $(this).attr('data-id');
+                $.get('user/delete/' + user_id, function(data) {
+                    $('#userTable tbody #' + user_id).remove();
+                })
             });
         });
-
-        $("#updateStudent").validate({
-            rules: {
-                txtFirstName: "required",
-                txtLastName: "required",
-                txtAddress: "required"
-            },
-            messages: {},
-            submitHandler: function(form) {
-                var form_action = $("#updateStudent").attr("action");
-                $.ajax({
-                    data: $('#updateStudent').serialize(),
-                    url: form_action,
-                    type: "POST",
-                    dataType: 'json',
-                    success: function(res) {
-                        var student = '<td>' + res.data.id + '</td>';
-                        student += '<td>' + res.data.first_name + '</td>';
-                        student += '<td>' + res.data.last_name + '</td>';
-                        student += '<td>' + res.data.address + '</td>';
-                        student += '<td><a data-id="' + res.data.id +
-                            '" class="btn btn-primary btnEdit">Edit</a>  <a data-id="' +
-                            res.data.id +
-                            '" class="btn btn-danger btnDelete">Delete</a></td>';
-                        $('#studentTable tbody #' + res.data.id).html(student);
-                        $('#updateStudent')[0].reset();
-                        $('#updateModal').modal('hide');
-                    },
-                    error: function(data) {}
-                });
-            }
-        });
-
-        $('body').on('click', '.btnDelete', function() {
-            var student_id = $(this).attr('data-id');
-            $.get('student/delete/' + student_id, function(data) {
-                $('#studentTable tbody #' + student_id).remove();
-            })
-        });
-    });
     </script>
 </body>
 
